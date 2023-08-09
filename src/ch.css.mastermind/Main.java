@@ -10,14 +10,14 @@ public class Main {
             int random = (int) (4*  Math.random());
             generatedColors[i] = color[random];
             System.out.println(generatedColors[i]);
+            System.out.println("Runde " + (i+1));
+
+
+
+
+
         }
     }
 
-
-
-
-
-
-    }
     
 }
