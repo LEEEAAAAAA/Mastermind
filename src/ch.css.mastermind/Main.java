@@ -3,13 +3,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+
+    public static String[] color = {"red", "orange", "yellow", "green", "blue", "purple", "pink", "white"};
     public static void main(String[] args) {
         Scanner myObj = new Scanner(System.in);
         boolean startNew = true;
         while (startNew == true) {
 
-
-            String[] color = {"red", "orange", "yellow", "green", "blue", "purple", "pink", "white"};
 
 
             System.out.println("For gameInstruction press i");
@@ -25,23 +25,8 @@ public class Main {
             }
 
 
-            String[] generatedColors = new String[4];
-            for (int r = 0; r < 4; r++) {
-                int samecolors = 2;
-                int randomNumber = 0;
-                while (samecolors >= 2) {
-                    samecolors = 0;
-                    Random random = new Random();
-                    randomNumber = random.nextInt(8);
-                    for (int c = 0; c < 4; c++) {
-                        if (color[randomNumber].equals(generatedColors[c])) {
-                            samecolors++;
-                        }
-                    }
-                }
-                generatedColors[r] = color[randomNumber];
-                System.out.println(generatedColors[r]);
-            }
+            String[] generatedColors = generateRandomColors();
+
             for (int i = 0; i < 12; i++) {
                 System.out.println("Round " + (i + 1));
                 int totalCorrectPlaces = 0;
@@ -117,6 +102,31 @@ public class Main {
 
             }
         }
+    }
+
+    public static String[] generateRandomColors() {
+        String[] generatedColors = new String[4];
+        for (int r = 0; r < 4; r++) {
+            int samecolors = 2;
+            int randomNumber = 0;
+            while (samecolors >= 2) {
+                samecolors = 0;
+                randomNumber = generateRandomNumber();
+                for (int c = 0; c < 4; c++) {
+                    if (color[randomNumber].equals(generatedColors[c])) {
+                        samecolors++;
+                    }
+                }
+            }
+            generatedColors[r] = color[randomNumber];
+            System.out.println(generatedColors[r]);
+        }
+        return generatedColors;
+    }
+
+    public static int generateRandomNumber() {
+        Random random = new Random();
+        return random.nextInt(8);
     }
 }
 
