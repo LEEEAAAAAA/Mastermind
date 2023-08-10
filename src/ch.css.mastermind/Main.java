@@ -44,25 +44,21 @@ public class Main {
             }
 
             int correctcolor = 0, correctplace = 0;
-            for (int j = 0; j < 4; j++){
+            int v = 0;
+            for (int j = 0; j < 4; j++) {
                 if (input[j].equals(generatedColors[j])) {
                     correctplace++;
-                }
-                for (int v = 0; v < 4; v++) {
-                if (input[j].equals(generatedColors[v])) {
+                } else if (input[j].equals(generatedColors[v])) {
                     correctcolor++;
                 }
 
             }
+
+            System.out.println(correctplace);
+            System.out.println(correctcolor);
+
+
         }
-
-        System.out.println(correctplace);
-        System.out.println(correctcolor);
-
     }
-
-
 }
-}
-
 
