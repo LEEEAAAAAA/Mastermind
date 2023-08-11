@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Main {
 
     public static String[] color = {"red", "orange", "yellow", "green", "blue", "purple", "pink", "white"};
+    static Scanner myObj = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner myObj = new Scanner(System.in);
         boolean startNew = true;
         while (startNew == true) {
 
@@ -43,7 +43,7 @@ public class Main {
     }
 
 
-    public static String[] generateRandomColors() {
+    private static String[] generateRandomColors() {
         String[] generatedColors = new String[4];
         for (int r = 0; r < 4; r++) {
             int samecolors = 2;
@@ -58,46 +58,45 @@ public class Main {
                 }
             }
             generatedColors[r] = color[randomNumber];
-           // System.out.println(generatedColors[r]);
+           System.out.println(generatedColors[r]);
         }
         return generatedColors;
     }
 
-    public static int generateRandomNumber() {
+    private static int generateRandomNumber() {
         Random random = new Random();
         return random.nextInt(8);
     }
 
-    static Scanner myObj = new Scanner(System.in);
 
-    public static boolean startAgain() {
+
+    private static boolean startAgain() {
         String playAgain;
-
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Would you like to play again? answer with no to exit or press enter to play again.");
-        playAgain = myObj.nextLine();
-        if ("no".equals(playAgain.toLowerCase().trim())) {
+        playAgain = scanner.nextLine();
+        if ("no".equals(playAgain.toLowerCase().replaceAll(" ",""))) {
             System.out.println("Ok.");
-            boolean startNew = false;
             return false;
         }
         else {
             return true;
         }
     }
-    public static void start(){
+    private static void start(){
         System.out.println("For gameInstruction press i");
         System.out.println("Press enter to start.");
         String gameInstruction = myObj.nextLine();
 
-        if ("i".equals(gameInstruction.toLowerCase().trim())) {
-            System.out.println("In this game, there are 8 colors choices: red, orange, yellow, green, blue, purple, pink and white.\nThe Game generates a random assortment of 4 colors. The games objective is to guess all of the colors in the right order.\nYou have 12 rounds to guess the colors and if you can't guess them correctly in those 12 rounds ... YOU LOOSE! Press enter to start.");
+        if ("i".equals(gameInstruction.toLowerCase().replaceAll(" ",""))) {
+            System.out.println("In this game, there are 8 color choices: red, orange, yellow, green, blue, purple, pink and white.\nThe Game generates a random assortment of 4 colors. The games objective is to guess all of the colors in the right order.\nYou have 12 rounds to guess the colors and if you can't guess them correctly in those 12 rounds ... YOU LOOSE!");
         } else {
             System.out.println("Alright then lets start.");
         }
 
     }
-    public static boolean winLoose(int totalWrongPlaces, int totalCorrectPlaces, int runden, String[] generatedColors){
+    private static boolean winLoose(int totalWrongPlaces, int totalCorrectPlaces, int runden, String[] generatedColors){
         System.out.println("Amount of colors in the right place:" + totalCorrectPlaces);
         System.out.println("Amount of colors that are the right color but in the wrong place:" + totalWrongPlaces);
         if (totalCorrectPlaces == 4) {
@@ -112,11 +111,11 @@ public class Main {
         return false;
     }
 
-    public static int wrongPlace(String[] colorCopy, String[] input){
+    private static int wrongPlace(String[] colorCopy, String[] input){
         int wrongplace = 0;
         for (int j = 0; j < 4; j++) {
             for (int v = 0; v < 4; v++) {
-                if (colorCopy[v].equals(input[j])) {
+                if (colorCopy[v].equals(input[j].toLowerCase().replaceAll(" ",""))) {
                     wrongplace++;
                     colorCopy[v] = "";
                 }
@@ -125,11 +124,10 @@ public class Main {
         }
         return wrongplace;
     }
-    public static int correctPlace(String[] colorCopy, String[] input){
+    private static int correctPlace(String[] colorCopy, String[] input){
         int correctplace = 0;
         for (int j = 0; j < 4; j++) {
-
-            if (colorCopy[j].equals(input[j])) {
+            if (colorCopy[j].equals(input[j].toLowerCase().replaceAll(" ",""))) {
 
                 correctplace++;
                 colorCopy[j] = "";
@@ -137,14 +135,14 @@ public class Main {
         }
         return correctplace;
     }
-    public static void colorReader(String[] input, int currentColor){
+    private static void colorReader(String[] input, int currentColor){
 
         boolean correctcolor = false;
         while (!correctcolor) {
                 System.out.println("Type in " + (currentColor + 1) + ". color:");
-                String userInput = myObj.next();
+                String userInput = myObj.nextLine();
                 for (String s : color) {
-                    if (s.equals(userInput.toLowerCase().trim())) {
+                    if (s.equals(userInput.toLowerCase().replaceAll(" ", ""))){
                         correctcolor = true;
                         break;
                     }
