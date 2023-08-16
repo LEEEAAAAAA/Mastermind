@@ -6,6 +6,7 @@ public class Main {
 
     public static String[] color = {"red", "orange", "yellow", "green", "blue", "purple", "pink", "white"};
     static Scanner myObj = new Scanner(System.in);
+
     public static void main(String[] args) {
         boolean startNew = true;
         while (startNew == true) {
@@ -16,12 +17,10 @@ public class Main {
             String[] generatedColors = generateRandomColors();
 
             for (int i = 0; i < 12; i++) {
-                System.out.println("________________________________________________________________________________________");
+                System.out.println("________________________________________________________________________________");
                 System.out.println("Round " + (i + 1));
-                int totalCorrectPlaces = 0;
-                int totalWrongPlaces = 0;
-
-
+                int totalCorrectPlaces;
+                int totalWrongPlaces;
                 String[] input = new String[4];
 
 
@@ -58,7 +57,7 @@ public class Main {
                 }
             }
             generatedColors[r] = color[randomNumber];
-           System.out.println(generatedColors[r]);
+           //System.out.println(generatedColors[r]);
         }
         return generatedColors;
     }
@@ -85,7 +84,7 @@ public class Main {
         }
     }
     private static void start(){
-        System.out.println("For gameInstruction press i");
+        System.out.println("For game instruction press i");
         System.out.println("Press enter to start.");
         String gameInstruction = myObj.nextLine();
 
@@ -156,14 +155,6 @@ public class Main {
                 }
         }
     }
-
-
-
-
-
-
-
-
 
 
 }
